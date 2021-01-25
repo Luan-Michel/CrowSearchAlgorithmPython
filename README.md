@@ -1,2 +1,2 @@
 # CrowSearchAlgorithmPython
-The Python implementation of CrowSearchAlgorithm
+A Python implementation of CrowSearchAlgorithm
