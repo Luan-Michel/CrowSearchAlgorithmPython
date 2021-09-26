@@ -1,3 +1,22 @@
+# -------------------------------------------------
+# Citation details:
+# Alireza Askarzadeh, Anovel metaheuristic method for solving constrained
+# engineering optimization problems: Crow search algorithm, Computers &
+# Structures, Vol. 169, 1-12, 2016.
+# Programmed by Alireza Askarzadeh at Kerman Graduate #
+# University of Advanced Technology(KGUT) #
+# Date of programming: September 2015 #
+# -------------------------------------------------
+# This demo only implements a standard version of CSA for minimization of
+# a standard test function(Sphere) on MATLAB 7.6.0 (R2008a).
+# -------------------------------------------------
+# Note:
+# Due to the stochastic nature of meta-heuristc algorithms, different runs
+# may lead to slightly different results.
+# -------------------------------------------------
+# Simple transcripted to SciLab by Luan Michel(github.com/Luan-Michel/CrowSearchAlgorithmPython)
+# Original in https: # www.mathworks.com/matlabcentral/fileexchange/56127-crow-search-algorithm
+
 import random	#random Function
 import numpy 	#numpy operations
 import math		#ceil function
@@ -18,12 +37,6 @@ def fitness(xn, n ,pd):	#function for fitness calculation
             fitness[i] = fitness[i]+pow(xn[(i, j)], 2)
     return fitness
 
-def randomArray(n):	#function that return random array
-	rd = []
-	for i in range(n):
-			rd.append(int(math.ceil(n*random.random())-1))
-	return rd
-
 # variables initialization #
 pd = 10		#Problem dimension (number of decision variables)
 n = 20		#Flock (population) size
@@ -42,7 +55,8 @@ ffit = numpy.array([])	# Best fit of each iteration
 #Iteration begin
 
 for t in range(tmax):
-	num = numpy.array(randomArray(n)) #Generation of random candidate crows for following (chasing)
+
+	num = numpy.array([random.randint(0, n-1) for _ in range(n)]) # Generation of random candidate crows for following (chasing)
 	xnew = numpy.empty((n,pd))
 	for i in range (n):
 		if(random.random() > ap):
@@ -62,4 +76,6 @@ for t in range(tmax):
 				mem[i] = xnew[i].copy()	#Update memory
 				fit_mem[i] = ft[i]
 	ffit = numpy.append(ffit, numpy.amin(fit_mem)) 	#Best found value until iteration t
-print(ffit)
+
+ngbest, = numpy.where(numpy.isclose(fit_mem, min(fit_mem)))
+print(mem[ngbest[0]])
