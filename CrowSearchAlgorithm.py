@@ -19,10 +19,10 @@ def fitness(xn, n ,pd):	#function for fitness calculation
     return fitness
 
 def randomArray(n):	#function that return random array
-        rd = []
-        for i in range(n):
-               rd.append(int(math.ceil(n*random.random())-1))
-        return rd
+	rd = []
+	for i in range(n):
+			rd.append(int(math.ceil(n*random.random())-1))
+	return rd
 
 # variables initialization #
 pd = 10		#Problem dimension (number of decision variables)
